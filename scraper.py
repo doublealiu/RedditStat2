@@ -72,7 +72,7 @@ def findGap(sub, pairs, gap):
 		(setting gap to 1 will produce highly innacurate data as
 		two posts' time differences are mostly within the same second)
 
-	subreddit : str
+	sub : str
 		the subreddit where you want the analysis to be performed
 
 	Return
@@ -96,8 +96,37 @@ def findGap(sub, pairs, gap):
 	return(differences / float(pairs))
 
 
-# TODO determine whether findGap() is actually accurate
-print(findGap('all', 20, 20))
+def frequentWords(sub, limit):
+	"""
+	frequentWords:
+	Parameters
+	__________
+
+	sub: the subreddit where you want ot analze the most frequent words 
+
+	limit: the number of posts you want analyzed
+
+	Return
+	______
+	returns dictionary with string of word (all lowercase) and frequency : string, int
+
+	"""
+	allWords = {}
+	line = []
+	for submission in reddit.subreddit(sub).hot(limit=limit):
+		line = submission.title.split()
+		for x in line:
+			existing = allWords.get(x.lower(), 0)
+			if(existing == 0):
+				allWords[x.lower()] = 1
+			else:
+				allWords[x.lower()] = allWords[x.lower()] + 1
+	return allWords
+
+for x,y in frequentWords('all', 10):
+	print(x,y)
+
+# TODO ValueError: too many values to unpack (expected 2)
 
 """
 TESTING GROUNDS
@@ -108,4 +137,7 @@ print(trackUpvotes('cuds18'))
 
 for x,y in listAllSubreddits('all', 100).items():
 	print(x,y)
+
+# TODO determine whether findGap() is actually accurate
+print(findGap('all', 20, 20))
 """
