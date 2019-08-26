@@ -8,7 +8,8 @@ MINECRAFT: Good
 """
 
 import praw
-import time
+import time #remove later
+import string
 
 reddit = praw.Reddit(client_id='0Gw8-EwymQ-fig',
                      client_secret='Y5kigBf4MmZs-u2m3lh6ZvFjclg',
@@ -113,20 +114,21 @@ def frequentWords(sub, limit):
 	"""
 	allWords = {}
 	line = []
+	out = ""
 	for submission in reddit.subreddit(sub).hot(limit=limit):
 		line = submission.title.split()
 		for x in line:
-			existing = allWords.get(x.lower(), 0)
+			out = x.translate(str.maketrans('', '', string.punctuation)).lower()
+			if(out.isdigit()):
+				continue
+
+			existing = allWords.get(out, 0)
 			if(existing == 0):
-				allWords[x.lower()] = 1
+				allWords[out] = 1
 			else:
-				allWords[x.lower()] = allWords[x.lower()] + 1
+				allWords[out] = allWords[out] + 1
+
 	return allWords
-
-for x,y in frequentWords('all', 10):
-	print(x,y)
-
-# TODO ValueError: too many values to unpack (expected 2)
 
 """
 TESTING GROUNDS
@@ -140,4 +142,7 @@ for x,y in listAllSubreddits('all', 100).items():
 
 # TODO determine whether findGap() is actually accurate
 print(findGap('all', 20, 20))
+
+for x,y in frequentWords('all', 10).items():
+	print(x,y)
 """

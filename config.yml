@@ -2,8 +2,8 @@ database:
   host: test.com
   port: 1
   database-name: test
-  username: root
-  password: password
+  client-id: root
+  client-secret: password
 
 subreddits:
   linuxmasterrace: 50 #subreddit: # of submissions
