@@ -1,0 +1,9 @@
+database:
+  host: test.com
+  port: 1
+  database-name: test
+  username: root
+  password: password
+
+subreddits:
+  linuxmasterrace: 50 #subreddit: # of submissions
