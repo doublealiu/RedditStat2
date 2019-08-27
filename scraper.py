@@ -10,7 +10,9 @@ MINECRAFT: Good
 import praw
 import time #remove later
 import string
+import config
 
+config = config.Config()
 reddit = praw.Reddit(client_id='0Gw8-EwymQ-fig',
                      client_secret='Y5kigBf4MmZs-u2m3lh6ZvFjclg',
                      user_agent='my user agent (test)')

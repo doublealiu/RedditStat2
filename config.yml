@@ -7,3 +7,14 @@ database:
 
 subreddits:
   linuxmasterrace: 50 #subreddit: # of submissions
+
+timings:
+  linusmasterrace: 60 #in seconds
+
+data:
+  titles: true
+  points: true
+  self-text: true
+
+track-posts:
+  #post ids go here
