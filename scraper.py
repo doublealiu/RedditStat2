@@ -11,6 +11,7 @@ import praw
 import time #remove later
 import string
 import config
+import emoji
 
 config = config.Config()
 reddit = praw.Reddit(client_id='0Gw8-EwymQ-fig',
@@ -105,9 +106,11 @@ def frequentWords(sub, limit):
 	Parameters
 	__________
 
-	sub: the subreddit where you want ot analze the most frequent words 
+	sub: str
+	the subreddit where you want to analze the most frequent words 
 
-	limit: the number of posts you want analyzed
+	limit: int
+	the number of posts you want analyzed
 
 	Return
 	______
@@ -132,6 +135,34 @@ def frequentWords(sub, limit):
 
 	return allWords
 
+
+
+def frequentEmoji(sub, limit):
+	"""
+	frequentEmoji:
+	Parameters
+	__________
+	sub: str
+	the subreddit where you want to analyze the most frequent emoji
+
+	limit: int
+	the number of posts you want analyzed
+
+	Return
+	______
+	returns dictionary with emoji and frequency: string, int
+	"""
+	allEmoji = {}
+	emojiLine = []
+	for submission in reddit.subreddit(sub).hot(limit=limit):
+		for emoticon in (submission.title + submission.selftext):
+			if(emoticon in emoji.UNICODE_EMOJI):
+				existing = allEmoji.get(emoticon, 0)
+				if(existing == 0):
+					allEmoji[emoticon] = 1
+				else:
+					allEmoji[emoticon] = allEmoji[emoticon] + 1
+	return allEmoji
 """
 TESTING GROUNDS
 _______________
@@ -146,5 +177,11 @@ for x,y in listAllSubreddits('all', 100).items():
 print(findGap('all', 20, 20))
 
 for x,y in frequentWords('all', 10).items():
+	print(x,y)
+
+for x,y in frequentWords('all', 500).items():
+	print(x,y)
+
+for x,y in frequentEmoji('emojipasta', 10).items():
 	print(x,y)
 """

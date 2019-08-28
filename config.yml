@@ -9,7 +9,7 @@ subreddits:
   linuxmasterrace: 50 #subreddit: # of submissions
 
 timings:
-  linusmasterrace: 60 #in seconds
+  linusmasterrace: 60 #every 60 seconds
 
 data:
   titles: true
