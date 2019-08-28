@@ -27,7 +27,6 @@ class SortType(Enum):
 		return reddit.subreddit(subreddit).top(timeframe, limit=limit)
 
 #config = config.Config()
->>>>>>> 1f51b92a4e51244fe9002c1d1d0e527b3a73991f
 reddit = praw.Reddit(client_id='0Gw8-EwymQ-fig',
                      client_secret='Y5kigBf4MmZs-u2m3lh6ZvFjclg',
                      user_agent='my user agent (test)')
