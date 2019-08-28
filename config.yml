@@ -1,20 +1,27 @@
 database:
   host: test.com
-  port: 1
   database-name: test
-  client-id: root
-  client-secret: password
+  username: root
+  password: password
 
 subreddits:
-  linuxmasterrace: 50 #subreddit: # of submissions
+  linuxmasterrace:
+    submissions: 50 #select 50 submissions
+    timing: 60 #get data every 60 seconds
+    sort-by-section: hot #hot, top, controversial; defaults to hot if not any of those
+    sort-by-time: today #only works with controversial and top
+    data:
+      title: true
+      points: true
+      self-text: true
 
-timings:
-  linusmasterrace: 60 #every 60 seconds
-
-data:
-  titles: true
-  points: true
-  self-text: true
+refresh-config: 60 #refresh config every 60 seconds
 
 track-posts:
   #post ids go here
+  - 1234
+
+reddit:
+  client-id: dsds
+  client-secret: dsa
+  user-agent: dsafvfd
