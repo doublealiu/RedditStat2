@@ -96,7 +96,7 @@ class ScraperMachine:
 		"""
 		times = []
 		i = 0
-		for submission in SortType.NEW(self.reddit, sub, 'all', limit=((pairs + 1) * gap)):
+		for submission in SortType.new(self.reddit, sub, 'all', limit=((pairs + 1) * gap)):
 			if((i % gap) == 0):
 				times.append(submission.created_utc)
 			i = i + 1
