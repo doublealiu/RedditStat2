@@ -2,13 +2,10 @@ import yaml
 import mysql.connector
 import praw.reddit
 
-data = yaml.safe_load(open("config.yml", 'r'))
-print(data.get("database").get("host"))
-
 #   Represents the state of config.yml at the time that it is called,
 #   nonmutable and will only return data about the config at the time it is called
 
-class Config:
+class Config(object):
     def __init__(self, filename):
         file = open(filename, 'r')
         self.data = yaml.safe_load(file)
@@ -37,5 +34,19 @@ class Config:
                            client_secret = redditData.get("client-secret"),
                            user_agent = redditData.get("user-agent"))
 
+    def getsubcontexts(self):
+        subdata = self.data.get("subreddits")
+        subs = list()
+        for sub in subdata.keys:
+            subs.append()
+
 class SubredditContext:
-    def __init__(self):
+    def __init__(self, subname, submissions, timing, section, time, title, points, selftext):
+        self.subname = subname
+        self.submissions = submissions
+        self.timing = timing
+        self.section = section
+        self.time = time
+        self.title = title
+        self.points = points
+        self.selftext = selftext
