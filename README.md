@@ -11,6 +11,8 @@ RedditStat uses [Python 3.7.4](https://www.python.org/downloads/). Make sure to 
 pip3 install praw --upgrade
 pip3 install pyyaml --upgrade
 pip3 install emoji --upgrade
+pip3 install schedule --upgrade
+pip3 install mysql-connector --upgrade
 ```
 If ```pip3``` does not work, use ```pip```. 
 
