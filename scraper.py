@@ -18,6 +18,7 @@ class SortType(Enum):
     """
 	Please note that timeframe is only used for controversial and top sorting methods
 	"""
+<<<<<<< HEAD
 
     def HOT(subreddit, timeframe, limit):
         return reddit.subredit(subreddit).hot(limit=limit)
@@ -33,6 +34,18 @@ class SortType(Enum):
 
 
 # config = config.Config()
+=======
+	def HOT(subreddit, timeframe, limit):
+		return reddit.subredit(subreddit).hot(limit=limit)
+	def NEW(subreddit, timeframe, limit):
+		return reddit.subreddit(subreddit).new(limit=limit)
+	def CONTROVERSIAL(subreddit, timeframe, limit):
+		return reddit.subreddit(subreddit).controversial(timeframe, limit=limit)
+	def TOP(subreddit, timeframe, limit):
+		return reddit.subreddit(subreddit).top(timeframe, limit=limit)
+
+#config = config.Config()
+>>>>>>> 131e4c93f3f03027e1507809fc1f38236ac66469
 reddit = praw.Reddit(client_id='0Gw8-EwymQ-fig',
                      client_secret='Y5kigBf4MmZs-u2m3lh6ZvFjclg',
                      user_agent='my user agent (test)')
