@@ -4,7 +4,10 @@ from scraper import SortType
 import schedule
 import threading
 import time
+from config import Config
+from config import SubredditContext
 
+configParser = Config(config.yml)
 
 def run_threaded(job_func):
     job_thread = threading.Thread(target=job_func)
