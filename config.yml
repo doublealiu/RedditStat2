@@ -10,16 +10,10 @@ subreddits:
     timing: 60 #get data every 60 seconds
     sort-by-section: hot #hot, top, controversial; defaults to hot if not any of those
     sort-by-time: today #only works with controversial and top
-    data:
-      title: true
-      points: true
-      self-text: true
-
-refresh-config: 60 #refresh config every 60 seconds
 
 track-posts:
-  #post ids go here
-  - 1234
+  1234: 20
+
 
 reddit:
   client-id: dsds
