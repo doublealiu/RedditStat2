@@ -9,7 +9,7 @@ subreddits:
     submissions: 50 #select 50 submissions
     timing: 60 #get data every 60 seconds
     sort-by-section: hot #hot, top, controversial; defaults to hot if not any of those
-    sort-by-time: today #only works with controversial and top
+    sort-by-time: today #only works with controversial and top; hour, day, week, month, year, all
 
 track-posts:
   1234: 20

@@ -39,6 +39,7 @@ class Config(object):
             singlesub = SubredditContext(sub, datacollect.get("submissions"), datacollect.get("timing"),
                                          datacollect.get("sort-by-section"), datacollect.get("sort-by-time"))
             subs.append(singlesub)
+        return subs
 
 class SubredditContext:
     def __init__(self, subname, submissions, timing, section, time):
