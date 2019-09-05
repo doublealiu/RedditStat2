@@ -38,13 +38,13 @@ def job(sub):
     else:
         sorttype = SortType.top
 
-    if(sub.time.lower() == "hour" | sub.time.lower() == "h"):
+    if(sub.time.lower() == "hour" or sub.time.lower() == "h"):
         timeframe = SortTime.hour
-    elif(sub.time.lower() == "today" | sub.time.lower() == "day" | sub.time.lower() == "24h"):
+    elif(sub.time.lower() == "today" or sub.time.lower() == "day" or sub.time.lower() == "24h"):
         timeframe = SortTime.day
     elif(sub.time.lower() == "week"):
         timeframe = SortTime.week
-    elif(sub.time.lower() == "year" | sub.time.lower() == "y"):
+    elif(sub.time.lower() == "year" or sub.time.lower() == "y"):
         timeframe = SortTime.year
     elif(sub.time.lower() == "all"):
         timeframe = SortTime.all
@@ -54,7 +54,8 @@ def job(sub):
     subname = sub.subname
     limit = sub.submissions
     DataCollector.collectPostData(sorttype, subname, timeframe, limit)
-    
+    #remember we need command here to feed into database
+
 def run_threaded(job_func):
     job_thread = threading.Thread(target=job_func)
     job_thread.start()
