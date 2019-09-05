@@ -44,11 +44,14 @@ class DataCollector:
         self.reddit = redditobject
 
     def collectPostData(self, sorttype, sub, timeframe, limit):
+        postArray = []
         for submission in sorttype(self.reddit, sub, timeframe, limit):
-            print(submission.title)
+            postArray.append(submission)
+        return postArray
+
     def collectSinglePost(self, postId):
         submission = self.reddit.submission(id=postId)
-        print(submission.title)
+        return submission
 
 reddit = praw.Reddit(client_id='0Gw8-EwymQ-fig',
                      client_secret='Y5kigBf4MmZs-u2m3lh6ZvFjclg',
