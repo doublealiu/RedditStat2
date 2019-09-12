@@ -12,11 +12,13 @@ def synchronized(func):
 def createtables(dbcon):
     dbcon = mysql.connector.Connect(dbcon)
     cursor = dbcon.cursor()
-    cursor.execute("CREATE TABLE IF NOT EXISTS subreddit_posts (post_id TEXT NOT NULL, points INT, title TEXT, self-text TEXT, " +
+    cursor.execute("CREATE TABLE IF NOT EXISTS subreddit_posts " +
+                   "(post_id TEXT NOT NULL, points INT, title TEXT, self-text TEXT, " +
                    "subreddit TEXT, sorttype ENUM('hot', 'new', 'controversial', 'top'), " +
-                   "timeframe ENUM('hour', 'day', 'week', 'month', 'year', 'all'), time TIMESTAMP NOT NULL DEFAULT NOW())")
+                   "timeframe ENUM('hour', 'day', 'week', 'month', 'year', 'all'), " +
+                   "time TIMESTAMP NOT NULL DEFAULT NOW());")
     cursor.execute("CREATE TABLE IF NOT EXISTS subreddit_posts (post_id TEXT NOT NULL, points INT, title TEXT, "
-                   "self-text TEXT, subreddit TEXT, time TIMESTAMP NOT NULL DEFAULT NOW())")
+                   "self-text TEXT, subreddit TEXT, time TIMESTAMP NOT NULL DEFAULT NOW());")
     dbcon.commit()
 
 @synchronized

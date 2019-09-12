@@ -12,7 +12,6 @@ from config import SubredditContext
 
 #database.createtables()
 configParser = Config("config.yml")
-contexts = []
 contexts = configParser.getsubcontexts()
 
 reddit = praw.Reddit(client_id='0Gw8-EwymQ-fig',
