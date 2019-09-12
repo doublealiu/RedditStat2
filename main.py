@@ -13,12 +13,8 @@ from config import SubredditContext
 #database.createtables()
 configParser = Config("config.yml")
 contexts = configParser.getsubcontexts()
-
-reddit = praw.Reddit(client_id='0Gw8-EwymQ-fig',
-                     client_secret='Y5kigBf4MmZs-u2m3lh6ZvFjclg',
-                     user_agent='my user agent (test)')
-
-DataCollector = DataCollector(reddit)
+reddit=config.getreddit
+DataCollector = DataCollector(redditobject=reddit)
 
 def job(sub):
     sorttype = 0
@@ -35,7 +31,7 @@ def job(sub):
     elif(sub.section.lower() == "new"):
         sorttype = SortType.new
     else:
-        sorttype = SortType.top
+        sorttype = SortType.hot
 
     if(sub.time.lower() == "hour" or sub.time.lower() == "h"):
         timeframe = SortTime.hour
@@ -48,7 +44,7 @@ def job(sub):
     elif(sub.time.lower() == "all"):
         timeframe = SortTime.all
     else:
-        timeframe = SortTime.day
+        timeframe = SortTime.hour
     
     subname = sub.subname
     limit = sub.submissions
@@ -61,7 +57,7 @@ def run_threaded(job_func):
 
 
 for x in contexts:
-    schedule.every(x.timing).seconds.do(job, sub=x)
+    schedule.every(x.timing).seconds.do(job, x)
 
 while 1:
     schedule.run_pending()
