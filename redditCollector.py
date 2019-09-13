@@ -77,10 +77,7 @@ class DataCollector:
         self.reddit = redditobject
 
     def collectPostData(self, sorttype, sub, timeframe, limit):
-        postArray = []
-        for submission in sorttype(self.reddit, sub, timeframe, limit):
-            postArray.append(submission)
-        return postArray
+        return sorttype(self.reddit, sub, timeframe, limit)
 
     def collectSinglePost(self, postId):
         submission = self.reddit.submission(id=postId)
