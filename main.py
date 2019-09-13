@@ -10,10 +10,11 @@ from redditCollector import DataCollector
 from config import Config
 from config import SubredditContext
 
-#database.createtables()
 configParser = Config("config.yml")
+db = configParser.getDatabase()
+
 contexts = configParser.getsubcontexts()
-reddit=config.getreddit
+reddit=configParser.getreddit
 DataCollector = DataCollector(redditobject=reddit)
 
 def job(sub):
@@ -22,29 +23,8 @@ def job(sub):
     timeframe = 0 
     limit = 0 
 
-    if(sub.section.lower() == "hot"):
-        sorttype = SortType.hot
-    elif(sub.section.lower() == "top"):
-        sorttype = SortType.top
-    elif(sub.section.lower() == "controversial"):
-        sorttype = SortType.controversial
-    elif(sub.section.lower() == "new"):
-        sorttype = SortType.new
-    else:
-        sorttype = SortType.hot
-
-    if(sub.time.lower() == "hour" or sub.time.lower() == "h"):
-        timeframe = SortTime.hour
-    elif(sub.time.lower() == "today" or sub.time.lower() == "day" or sub.time.lower() == "24h"):
-        timeframe = SortTime.day
-    elif(sub.time.lower() == "week"):
-        timeframe = SortTime.week
-    elif(sub.time.lower() == "year" or sub.time.lower() == "y"):
-        timeframe = SortTime.year
-    elif(sub.time.lower() == "all"):
-        timeframe = SortTime.all
-    else:
-        timeframe = SortTime.hour
+    sorttype = SortType.get(sub.section.lower())
+    sorttime = SortTime.get(sub.time.lower())
     
     subname = sub.subname
     limit = sub.submissions

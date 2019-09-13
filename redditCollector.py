@@ -3,6 +3,23 @@ import string
 
 class SortTime():
     @staticmethod
+    def get(name):
+        name = name.lower()
+        timeframe = 0
+        if(name == "hour" or name == "h"):
+            timeframe = SortTime.hour
+        elif(name == "today" or name == "day" or name == "24h"):
+            timeframe = SortTime.day
+        elif(name == "week"):
+            timeframe = SortTime.week
+        elif(name == "year" or name == "y"):
+            timeframe = SortTime.year
+        elif(name == "all"):
+            timeframe = SortTime.all
+        else:
+            timeframe = SortTime.hour
+        return timeframe
+    @staticmethod
     def hour():
         return "hour"
     @staticmethod
@@ -25,6 +42,22 @@ class SortType():
     """
         Please note that timeframe is only used for controversial and top sorting methods
     """
+    @staticmethod
+    def get(name):
+        name = name.lower()
+        sorttype = 0
+        if(name == "hot"):
+            sorttype = SortType.hot
+        elif(name == "top"):
+            sorttype = SortType.top
+        elif(name == "controversial"):
+            sorttype = SortType.controversial
+        elif(name == "new"):
+            sorttype = SortType.new
+        else:
+            sorttype = SortType.hot
+        return sorttype
+
     @staticmethod
     def hot(reddit, subreddit, timeframe, limit):
         return reddit.subreddit(subreddit).hot(limit=limit)
