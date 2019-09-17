@@ -1,8 +1,8 @@
 database:
-  host: test.com
-  database-name: test
-  username: root
-  password: password
+  host: db4free.net
+  database-name: redditstat
+  username: wsmachine
+  password: summerTwig678
 
 subreddits:
   linuxmasterrace:
@@ -12,10 +12,10 @@ subreddits:
     sort-by-time: today #only works with controversial and top; hour, day, week, month, year, all
 
 track-posts:
-  1234: 20 # post-id: how many seconds between each data collection
+  #1234: 20 # post-id: how many seconds between each data collection
 
 
 reddit:
-  client-id: dsds
-  client-secret: dsa
-  user-agent: dsafvfd
+  client-id: 0Gw8-EwymQ-fig
+  client-secret: Y5kigBf4MmZs-u2m3lh6ZvFjclg
+  user-agent: webscrapingmachine

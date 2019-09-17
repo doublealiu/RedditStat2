@@ -1,6 +1,7 @@
 import yaml
 import mysql.connector
 import praw.reddit
+from mysql.connector import pooling
 
 #   Represents the state of config.yml at the time that it is called,
 #   nonmutable and will only return data about the config at the time it is called
@@ -13,8 +14,9 @@ class Config(object):
 
     def getDatabase(self):
         dbData = self.data.get("database")
-        return mysql.connector.connect(host=dbData.get("host"), database=dbData.get("database-name"),
-                                       user=dbData.get("username"), password=dbData.get("password"))
+        return mysql.connector.pooling.MySQLConnectionPool(pool_name="schedulepool", pool_size=10, pool_reset_session=True,
+                                                           host=dbData.get("host"), database=dbData.get("database-name"),
+                                                           user=dbData.get("username"), password=dbData.get("password"))
 
     def getTrackedPosts(self, reddit):
         reddit = reddit(reddit)

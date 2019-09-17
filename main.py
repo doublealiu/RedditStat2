@@ -3,7 +3,7 @@ import schedule
 import threading
 import time
 import string
-import database
+from database import Database
 from redditCollector import SortTime
 from redditCollector import SortType
 from redditCollector import DataCollector
@@ -12,11 +12,11 @@ from config import SubredditContext
 
 configParser = Config("config.yml")
 db = configParser.getDatabase()
-database.createtables(db)
+Database.createtables(db)
 
 contexts = configParser.getsubcontexts()
 tracked = configParser.getTrackedPosts()
-reddit=configParser.getreddit
+reddit=configParser.getReddit()
 DataCollector = DataCollector(redditobject=reddit)
 
 def sub_job(sub, db):
@@ -28,10 +28,10 @@ def sub_job(sub, db):
     postdata = DataCollector.collectPostData(sorttype, subname, sorttime, limit)
 
     for s in postdata:
-        database.insertpost(db, s, sorttype, sorttime)
+        Database.insertpost(db, s, sorttype, sorttime)
 
 def post_job(submission, db):
-    database.insertpost(db, submission)
+    Database.inserttracked(db, submission)
 
 def run_threaded(job_func, sub, database):
     job_thread = threading.Thread(target=job_func, args=(sub,database))
