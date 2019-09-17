@@ -15,8 +15,8 @@ db = configParser.getDatabase()
 Database.createtables(db)
 
 contexts = configParser.getsubcontexts()
-tracked = configParser.getTrackedPosts()
 reddit=configParser.getReddit()
+tracked = configParser.getTrackedPosts(reddit)
 DataCollector = DataCollector(redditobject=reddit)
 
 def sub_job(sub, db):
