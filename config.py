@@ -19,7 +19,7 @@ class Config(object):
                                                            user=dbData.get("username"), password=dbData.get("password"))
 
     def getTrackedPosts(self, reddit):
-        reddit = reddit(reddit)
+        reddit = praw.Reddit(reddit)
         idlist = self.data.get("tracked-posts").values()
         submissions = dict()
         for postid in idlist:
@@ -36,8 +36,8 @@ class Config(object):
     def getsubcontexts(self):
         subsdata = self.data.get("subreddits")
         subs = list()
-        for sub in subsdata.keys:
-            datacollect = subsdata.get(sub).get("data")
+        for sub in subsdata.keys():
+            datacollect = subsdata.get(sub)
             singlesub = SubredditContext(sub, datacollect.get("submissions"), datacollect.get("timing"),
                                          datacollect.get("sort-by-section"), datacollect.get("sort-by-time"))
             subs.append(singlesub)
