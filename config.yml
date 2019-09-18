@@ -12,7 +12,7 @@ subreddits:
     sort-by-time: today #only works with controversial and top; hour, day, week, month, year, all
 
 track-posts:
-  #1234: 20 # post-id: how many seconds between each data collection
+  1234: 20 # post-id: how many seconds between each data collection
 
 
 reddit:

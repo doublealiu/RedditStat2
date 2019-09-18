@@ -19,13 +19,12 @@ class Config(object):
                                                            user=dbData.get("username"), password=dbData.get("password"))
 
     def getTrackedPosts(self, reddit):
-        reddit = praw.Reddit(reddit)
-        idlist = self.data.get("tracked-posts").values()
+        idlist = self.data.get("track-posts")
         submissions = dict()
         for postid in idlist:
             submission = reddit.submission(id=postid)
             if submission is not None:
-                submissions[postid] = idlist.get(postid)
+                submissions[postid] = idlist[postid]
         return submissions
 
     def getReddit(self):

@@ -82,9 +82,3 @@ class DataCollector:
     def collectSinglePost(self, postId):
         submission = self.reddit.submission(id=postId)
         return submission
-
-reddit = praw.Reddit(client_id='0Gw8-EwymQ-fig',
-                     client_secret='Y5kigBf4MmZs-u2m3lh6ZvFjclg',
-                     user_agent='my user agent (test)')
-yeettest = DataCollector(reddit)
-yeettest.collectPostData(sorttype=SortType.hot, sub='all', timeframe=SortTime.week, limit=25)
