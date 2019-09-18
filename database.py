@@ -12,7 +12,7 @@ class Database:
                        "subreddit TEXT, sorttype ENUM('hot', 'new', 'controversial', 'top'), " +
                        "timeframe ENUM('hour', 'day', 'week', 'month', 'year', 'all'), " +
                        "time TIMESTAMP NOT NULL DEFAULT NOW());")
-        cursor.execute("CREATE TABLE IF NOT EXISTS subreddit_posts (post_id TEXT NOT NULL, points INT, title TEXT, "
+        cursor.execute("CREATE TABLE IF NOT EXISTS tracked_posts (post_id TEXT NOT NULL, points INT, title TEXT, "
                        "self_text TEXT, subreddit TEXT, time TIMESTAMP NOT NULL DEFAULT NOW());")
         dbcon.commit()
         dbcon.close()
