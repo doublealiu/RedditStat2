@@ -50,4 +50,11 @@ reddit:
   client-secret: dsa
   user-agent: dsafvfd # not dependent for program execution
 ```
+## Installation and Running
+Please download all .py and .yml files and move them to a preferred directory. Note that all python files must be in the same directory. After configuring and saving config.yml, your program is ready to run.
 
+To run in the foreground (your program will stop if you close the terminal window):
+```python3 /path/to/main.py``` or ```python /path/to/main.py``` if you only have Python 3 installed on your computer.
+
+To run in the background, you will need to use ```nohup```:
+```nohup python3 /path/to/main.py &``` or ```nohup python /path/to/main.py &```
