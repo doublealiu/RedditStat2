@@ -21,7 +21,7 @@ class Database:
     def insertpost(pool, submission, sort, time):
         dbcon = pool.get_connection()
         statement = "INSERT INTO subreddit_posts VALUES (%s, %s, %s, %s, %s, %s, %s, NOW())"
-        val = (submission.id, submission.score, submission.title, submission.selftext, submission.subreddit.name, sort, time)
+        val = (submission.id, submission.score, submission.title, submission.selftext, submission.subreddit.display_name, sort, time)
         cursor = dbcon.cursor()
         cursor.execute(statement, val)
         dbcon.commit()
@@ -30,8 +30,8 @@ class Database:
     @staticmethod
     def inserttracked(pool, submission):
         dbcon = pool.get_connection()
-        statement = "INSERT INTO subreddit_posts VALUES (%s, %s, %s, %s, %s, NOW())"
-        val = (submission.id, submission.score, submission.title, submission.selftext, submission.subreddit.name)
+        statement = "INSERT INTO tracked_posts VALUES (%s, %s, %s, %s, %s, NOW())"
+        val = (submission.id, submission.score, submission.title, submission.selftext, submission.subreddit.display_name)
         cursor = dbcon.cursor()
         cursor.execute(statement, val)
         dbcon.commit()

@@ -28,7 +28,7 @@ def sub_job(sub, db):
     postdata = DataCollector.collectPostData(sorttype, subname, sorttime, limit)
 
     for s in postdata:
-        Database.insertpost(db, s, sorttype, sorttime)
+        Database.insertpost(db, s, SortType.getName(sorttype), SortTime.getName(sorttime))
 
 def post_job(tracked, db):
     Database.inserttracked(db, DataCollector.collectSinglePost(tracked))
@@ -38,10 +38,10 @@ def run_threaded(func, sub, db):
     job_thread.start()
 
 for context in contexts:
-    schedule.every(context.timing).seconds.do(run_threaded, func=sub_job, sub=context, db=db)
+    schedule.every(context.timing).seconds.do(job_func=run_threaded, func=sub_job, sub=context, db=db)
 
 for id, timing in tracked.items():
-    schedule.every(timing).seconds.do(run_threaded, func=post_job, sub=id, db=db)
+    schedule.every(timing).seconds.do(job_func=run_threaded, func=post_job, sub=id, db=db)
 
 while 1:
     schedule.run_pending()

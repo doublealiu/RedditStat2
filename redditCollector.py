@@ -19,6 +19,21 @@ class SortTime():
         else:
             timeframe = SortTime.hour
         return timeframe
+
+    @staticmethod
+    def getName(method):
+        if method==SortTime.hour:
+            return "hour"
+        if method==SortTime.day:
+            return "day"
+        if method==SortTime.week:
+            return "week"
+        if method==SortTime.year:
+            return "year"
+        if method==SortTime.all:
+            return "all"
+        return 0
+
     @staticmethod
     def hour():
         return "hour"
@@ -57,6 +72,18 @@ class SortType():
         else:
             sorttype = SortType.hot
         return sorttype
+
+    @staticmethod
+    def getName(method):
+        if method==SortType.hot:
+            return "hot"
+        if method==SortType.new:
+            return "new"
+        if method==SortType.controversial:
+            return "controversial"
+        if method==SortType.top:
+            return "top"
+        return 0
 
     @staticmethod
     def hot(reddit, subreddit, timeframe, limit):
