@@ -21,6 +21,8 @@ class Config(object):
     def getTrackedPosts(self, reddit):
         idlist = self.data.get("track-posts")
         submissions = dict()
+        if idlist is None:
+            return submissions
         for postid in idlist:
             submission = reddit.submission(id=postid)
             if submission is not None:

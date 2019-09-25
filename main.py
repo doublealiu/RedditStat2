@@ -26,9 +26,12 @@ def sub_job(sub, db):
     limit = sub.submissions
 
     postdata = DataCollector.collectPostData(sorttype, subname, sorttime, limit)
-
-    for s in postdata:
-        Database.insertpost(db, s, SortType.getName(sorttype), SortTime.getName(sorttime))
+    if (subname == "all"):
+        for s in postdata:
+            Database.insertallpost(db, s, SortType.getName(sorttype), SortTime.getName(sorttime))
+    else:
+        for s in postdata:
+            Database.insertpost(db, s, SortType.getName(sorttype), SortTime.getName(sorttime))
 
 def post_job(tracked, db):
     Database.inserttracked(db, DataCollector.collectSinglePost(tracked))

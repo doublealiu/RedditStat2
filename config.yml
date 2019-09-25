@@ -5,20 +5,15 @@ database:
   password: summerTwig678
 
 subreddits:
-  linuxmasterrace:
-    submissions: 5 #select 50 submissions
-    timing: 600 #get data every 60 seconds
-    sort-by-section: hot #hot, top, controversial; defaults to hot if not any of those
-    sort-by-time: today #only works with controversial and top; hour, day, week, month, year, all
   all:
-    submissions: 50
+    submissions: 10 
     timing: 60
-    sort-by-section: new
+    sort-by-section: hot 
     sort-by-time: week
 
 track-posts:
-  d61zbn: 20 # post-id: how many seconds between each data collection
-  d69jek: 20
+
+
 reddit:
   client-id: 0Gw8-EwymQ-fig
   client-secret: Y5kigBf4MmZs-u2m3lh6ZvFjclg
